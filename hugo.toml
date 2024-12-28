@@ -1,5 +1,5 @@
-# baseurl = "http://47.96.184.251"
-baseurl = "http://192.168.48.128"
+baseurl = "http://47.96.184.251"
+# baseurl = "http://192.168.48.128"
 title = "Wayne's Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
