@@ -25,90 +25,89 @@ categories:  ["Tech" ]
     ```yaml
     # 本workflow通过github actions部署hugo static website,并将hugo的public目录内容sync同步到aliyunECS机器的nginx static文件目录中
     name: Deploy hugo site by githubactions and Sync public directory into Aliyun ECS disk
-
     on:
-    push:
+      push:
         branches:
-        - main
-        - master
+          - main
+          - master
 
     workflow_dispatch:
 
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
-    contents: read
-    pages: write
-    id-token: write
+      contents: read
+      pages: write
+      id-token: write
 
     # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
     # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
     concurrency:
-    group: "pages"
-    cancel-in-progress: false
-
+      group: "pages"
+      cancel-in-progress: false
 
     # Default to bash
     defaults:
-    run:
+      run:
         shell: bash
 
     jobs:
-    build:
+      build:
         runs-on: ubuntu-latest
         env:
-        HUGO_VERSION: 0.137.1
+          HUGO_VERSION: 0.137.1
+        
         steps:
-        - name: install hugo cli
+          - name: install hugo cli
             run: |
-            wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-            && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-        - name: install dart sass
+              wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+            && sudo dpkg -i ${{ runner.temp }}/hugo.deb        
+          - name: install dart sass
             run: sudo snap install dart-sass
-        - name: checkout
+          - name: checkout
             uses: actions/checkout@v4
             with:
-            submodules: recursive
-            fetch-depth: 0
-        - name: Setup Pages
+              submodules: recursive
+              fetch-depth: 0
+          - name: Setup Pages
             id: pages
             uses: actions/configure-pages@v5
-        - name: Install Node.js dependencies
-            run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-        - name: Build with Hugo
+          - name: Install Node.js dependencies
+            run: "[[ -f package-lock.json || -f npm-shrinkwrap.  json ]] && npm ci || true"
+          - name: Build with Hugo
             env:
-            HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
-            HUGO_ENVIRONMENT: production
-            TZ: America/Los_Angeles
+              HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+              HUGO_ENVIRONMENT: production
+              TZ: America/Los_Angeles
             run: |
-            hugo \
+              hugo \
                 --gc \
-                --minify  
-        - name: upload artfacts
+                --minify          
+          - name: upload artfacts
             uses: actions/upload-artifact@v3
             with:
-            name: public
-            path: public/
-        
-    # sync public directory into aliyunECS
-    deploy:
+              name: public
+              path: public/
+
+      # sync public directory into aliyunECS
+      deploy:
         runs-on: ubuntu-latest
         needs: build
         steps:
-        - name: download artifacts
-        uses: actions/download-artifact@v3
-        with:
-            name: public
-            path: public
+          - name: download artifacts
+            uses: actions/download-artifact@v3
+            with:
+              name: public
+              path: public
 
-        - name: sync hugo static public directory into remote AliyunECS by SSH
-        uses: easingthemes/ssh-deploy@v2.1.5      #可以访问的仓库，实现的上传服务器步骤被封装在此action
-        env:
-            SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}  #这个是阿里云的私钥
-            ARGS: "-avzr --delete"
-            SOURCE: "./public"
-            REMOTE_HOST: ${{ secrets.ALIYUN_ECS_HOST }}    #阿里云的 ip
-            REMOTE_USER: ${{ secrets.ALIYUN_ECS_USER }}    #阿里云用户
-            TARGET: "/opt/webapp/static/hugo"       #NGINX静态文件目录 
+          - name: sync hugo static public directory into remote AliyunECS by SSH
+            uses: easingthemes/ssh-deploy@v2.1.5      #可以访问的仓库，实现的上传服务器步骤被封装在此action
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}  #这个是阿里云的私钥
+              ARGS: "-avzr --delete"
+              SOURCE: "./public"
+              REMOTE_HOST: ${{ secrets.ALIYUN_ECS_HOST }}    #阿里云的 ip
+              REMOTE_USER: ${{ secrets.ALIYUN_ECS_USER }}    #阿里云用户
+              TARGET: "/opt/webapp/static/hugo"       #NGINX静态文件目录  
     ```
 
 2. 在阿里云ECS服务器上创建SSH密钥对。并将私钥保存到github仓库的secrets中，命名为ALIYUN_SSH_PRIVATE_KEY；同时将公钥保存到阿里云ECS服务器上，并添加到(ECS的)~/.ssh/authorized_keys文件中。 
