@@ -19,7 +19,7 @@ home = ["HTML", "RSS", "Algolia"]
   description = "这里是 Wayne 的博客，与你一起发现更大的世界。"
   keyword = "博客, 个人网站"
   slogan = "路虽远，行则将至。"
-  upstreamAttribution = true
+  upstreamAttribution = false
 
   image_404 = "img/404-bg.jpg"
   title_404 = "你来到了没有知识的荒原 :("
