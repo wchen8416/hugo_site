@@ -1,6 +1,6 @@
-# baseurl = "http://47.96.184.251"
-baseurl = "http://wangchen.world"
-# baseurl = "http://192.168.48.128"
+baseurl = "http://47.96.184.251"
+# baseurl = "http://wangchen.world"
+# baseurl = "http://192.168.137.134"
 title = "Wayne's Blog"
 theme = "hugo-theme-cleanwhite"
 languageCode = "en-us"
@@ -8,7 +8,9 @@ languageCode = "en-us"
 disqusShortname = ""
 googleAnalytics = ""
 preserveTaxonomyNames = true
-paginate = 5                 #frontpage pagination
+[pagination]
+pagerSize = 5                 #frontpage pagination
+
 hasCJKLanguage = true
 
 [outputs]
@@ -38,7 +40,7 @@ algolia_indexName = ""
 algolia_apiKey = ""
 
 # Sidebar settings
-sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+sidebar_about_description = "软件工程师 电子技术爱好者"
 #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
 sidebar_avatar = "img/wayne.png" # use absolute URL, seeing it's used in both `/` and `/about/`
 

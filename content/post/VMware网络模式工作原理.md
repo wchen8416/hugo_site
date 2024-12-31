@@ -9,7 +9,7 @@ tags:        ["VMware"]
 categories:  ["Tech" ]
 ---
 
-# VMware网络模式工作原理详解
+## VMware网络模式工作原理详解
 
 我的第一台linux系统就是在vmware虚拟机上安装的，目前在工作中我的开发环境也依然是通过VMware搭建的。
 
@@ -51,3 +51,8 @@ bridge时的拓扑图如下所示：
 ### host only模式
 
 TODO
+
+## reference
+
+1. {{<rawhtml>}}<a href="https://blog.51cto.com/sddai/3016904" target="_blank">https://blog.51cto.com/sddai/3016904</a>{{</rawhtml>}}
+2. {{<rawhtml>}}<a href="https://bbs.huaweicloud.com/blogs/332956" target="_blank">https://bbs.huaweicloud.com/blogs/332956</a>{{</rawhtml>}}

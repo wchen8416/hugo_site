@@ -7,6 +7,7 @@ author:      "Wayne"
 image:       ""
 tags:        ["hugo","blog"]
 categories:  ["Tech" ]
+draft:       true
 ---
 
 # 使用hugo搭建个人博客Blog
@@ -113,4 +114,5 @@ categories:  ["Tech" ]
 2. 在阿里云ECS服务器上创建SSH密钥对。并将私钥保存到github仓库的secrets中，命名为ALIYUN_SSH_PRIVATE_KEY；同时将公钥保存到阿里云ECS服务器上，并添加到(ECS的)~/.ssh/authorized_keys文件中。 
 
 TIPS:
-1. 阿里云ECS服务器上需要安装nginx，并将静态文件目录设置为`/opt/webapp/static/hugo`
+1. 阿里云ECS服务器上需要安装nginx，并将静态文件目录设置为`/opt/webapp/static/hugo`  
+2. github仓库的Settings->Pages的source需要选择Github Actions
