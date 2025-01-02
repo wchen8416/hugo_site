@@ -17,6 +17,8 @@ TCP 长连接下，客户端和服务器若长时间无数据交互情况下，�
 
 为了解决此问题，引入了 TCP KeepAlive 机制（并非标准规范，但操作系统一旦实现，默认情况下须为关闭，可以被上层应用开启和关闭）。{{<rawhtml>}}<strong>其基本原理是在此机制开启时，当长连接无数据交互一定时间间隔时，连接的一方会向对方发送保活探测包，如连接仍正常，对方将对此确认回应。</strong>{{</rawhtml>}}
 
+![Alt text](/img/tcp-keepalive.png)
+
 关于 TCP KeepAlive 机制的详细背景可以参考《TCP/IP 详解 卷 1:协议》一书。
 
 ### TCP KeepAlive 设置参数(三个)
@@ -91,6 +93,8 @@ Keep-Alive: timeout=5, max=1000
 HTTP Keep-Alive 指的是 HTTP/1.1 协议中，通过在请求头或响应头中设置 `Connection: keep-alive` 来保持连接持续打开状态，以便后续的多个请求可以复用同一个 TCP 连接。
 
 而 TCP KeepAlive 是指在传输层（TCP）上的一种机制，用于检测一个空闲连接的另一端是否仍然可达，以避免因网络故障或其他原因导致的半开连接占用资源。它并不直接与 HTTP 的持久连接特性相关联，但可以在使用 HTTP Keep-Alive 时发挥作用，确保即使在长时间无数据传输的情况下，连接也不会被意外关闭。
+
+{{<rawhtml>}}<p style="color:red;">也就是说，HTTP 的 KeepAlive 是提示 peer 没事不要这么快主动 close TCP 连接；而 TCP 的 KeepAlive 主要是在长时间没有数据进行交换的情况下检测对方 peer TCP 连接是否还在保持住是否还有效的目的；它们解决的是完全不同的问题。</p>{{</rawhtml>}}
 
 #### 如何理解二者关系
 
