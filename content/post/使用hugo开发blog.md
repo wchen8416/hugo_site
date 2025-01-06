@@ -10,9 +10,10 @@ categories: ["Tech"]
 draft: false
 ---
 
-# 使用 hugo 搭建个人博客 Blog
-
 由于 github pages 在国内访问速度较慢，所以选择阿里云 ECS 服务器 NGINX 托管/host 博客静态资源。
+由于国内 github 访问速度较慢，所以代码厂库托管在 gitee 上，然后将 gitee 仓库 自动同步到 github 仓库。
+
+## gitee 仓库同步 github 仓库
 
 ## 使用 docker 搭建 hugo 开发环境
 
