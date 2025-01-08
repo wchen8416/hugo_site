@@ -1,5 +1,5 @@
 ---
-title: "C++之namespace"
+title: "C++ namespace"
 subtitle: ""
 description: "Namespaces provide a much more controlled mechanism for preventing name
 collisions. Namespaces partition the global namespace. A namespace is a scope. By
@@ -8,11 +8,11 @@ the limitations inherent in global names."
 date: 2025-01-06T02:35:37Z
 author:      "Wayne"
 image: ""
-tags: ["C++", "namespace","global namespace", "namespace pollution", "global scope", "Unnamed Namespaces", "file static"]
+tags: ["C++", "namespace","global namespace", "namespace pollution", "global scope", "Unnamed Namespaces", "file static", "static", "scope", "Best Practices"]
 categories: ["Tech"]
 ---
 
-## 命名空间污染问题
+## Namespace pollution 命名空间污染问题
 
 Large programs tend to use independently developed libraries. Such libraries also tend
 to define a large number of {{<rawhtml>}}<span style="color:red;">global</span>{{</rawhtml>}} names, such as classes, functions, and templates.
@@ -28,7 +28,7 @@ which library defined the name. This solution is far from ideal: It can be cumbe
 read programs that use such long names.  
 C 语言通过给全局变量或函数添加前缀来解决命名空间污染问题的方法导致全局函数名字和全局变量名字过长，不方便阅读或程序员引用。C 语言的这种通过给名字添加前缀来解决全局命名碰撞冲突的问题比起 C++的命名空间机制显得笨拙,渣渣。
 
-## namespaces
+## Namespaces
 
 #### The Global Namespace(全局命名空间)
 
@@ -102,7 +102,7 @@ using std::cin;
 like a using declaration, allows us to use the unqualified form of
 a namespace name. **BUT** unlike a using declaration, we retain no control over which names are made visible—**they all are**. 当使用 using directive 的时候，我们无法控制该命名空间中的哪些(哪一部分)成员的名字是可见的，它们全部(该命名空间的所有成员的名字)都是可见的,要么引入整个命名空间的所有成员，要么就是不引入任何东西。所以如果只想引入一部分命名空间成员，则应该使用 using declaration。
 
-##### The scope of names introduced by a using directive(通过 using directive 引入的成员名字的作用域(或可见)范围?)
+###### The scope of names introduced by a using directive(通过 using directive 引入的成员名字的作用域(或可见)范围?)
 
 it has the effect of lifting the namespace members into **the nearest scope that contains both the namespace itself and the using directive**.
 也就是，using directive 引入的命名空间成员的名字的作用域范围是同时包含该 using directive 语句和该命名空间本身的那个最近的那个作用域 scope。
@@ -149,6 +149,49 @@ When a namespace is injected into an enclosing scope, it is possible for names i
 
 Because the names are in different scopes, **local declarations within manip may hide some of the namespace member names**. The local variable k hides the namespace member blip::k. Referring to k within manip is not ambiguous; it refers to the local variable k.
 
+## Argument-Dependent Lookup and Parameters of Class Type
+
+当调用一个函数时，如果该函数的参数是类类型(class type)，编译器会自动去参数类被定义的命名空间中查找函数名，同时可以省略掉该函数名前的明确的命名空间声明。如当对标准输入流对象 std::cin 使用 >> 运算符(函数)时，编译器会自动去命名空间 `std` 中查找该函数名>>的定义，且可以直接使用>>，不用像这样`std::operator>>(std::cin, s);`还需要明确指定命名空间麻烦。
+
+Consider the following simple program:
+
+```cpp
+std::string s;
+std::cin >> s;
+```
+
+As we know, this call is equivalent to
+
+```cpp
+operator>>(std::cin, s);
+```
+
+This operator>> function is defined by the string library, which in turn is defined in the `std` namespace. {{<rawhtml>}}<span style="color:red;">Yet(But) we can we call operator>> without an std:: qualifier and without a using declaration. WHY?</span>{{</rawhtml>}}
+We can **directly access** the output operator>> without using std declare(即 std::operator>>) {{<rawhtml>}}<span style="color:red;">because</span>{{</rawhtml>}} When we pass an object of a class type to a function, the compiler searches the namespace in which the argument’s class is defined in addition to the normal scope lookup. This exception also applies for calls that pass pointers or references to a class type.
+
+In this example, when the compiler sees the “call” to operator>>, it looks for a matching function in the current scope, including the scopes enclosing the output statement. In addition, because the >> expression has parameters of class type, the compiler also looks in the namespace(s) in which the types of cin and s are defined. Thus, for this call, the compiler looks in the std namespace, which defines the
+istream and string types. When it searches std, the compiler finds the string output operator function.
+
+This exception in the **lookup rules(函数名字搜索规则)** allows nonmember functions that are conceptually part of the interface to a class to **be used without requiring a separate using declaration**.
+
+In the absence of this exception to the lookup rules, either we would have to provide an appropriate using declaration for the output operator:
+
+```cpp
+using std::operator>>; // needed to allow cin >> s
+```
+
+or we would have to use the function-call notation in order to include the namespace qualifer:
+
+```cpp
+std::operator>>(std::cin, s); // ok: explicitly use std::>>
+```
+
+So either of these declarations is awkward and would make simple uses of the IO library more complicated.
+
+## Overloading and Namespaces
+
+TODO
+
 ## Best Practices/Warnings(命名空间使用过程中的最佳实践/约定习成的习惯/警告)
 
 #### Do not put a #include inside the namespace. [Warning]
@@ -163,8 +206,9 @@ If we did, we would be attempting to define all the names in that header as memb
 // #includes should appear before opening the namespace
 #include <string>
 namespace cplusplus_primer {
-class Sales_data { /* ... */}; Sales_data operator+(const Sales_data&, const Sales_data&);
-// declarations for the remaining functions in the Sales_data interface
+    class Sales_data { /* ... */};
+    Sales_data operator+(const Sales_data&, const Sales_data&);
+    // declarations for the remaining functions in the Sales_data interface
 }
 ```
 
