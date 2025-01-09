@@ -20,7 +20,7 @@ categories: ["Tech"]
 
 总结来说，INCLUDE_DIRECTORIES 在 CMake 中不是一个直接可访问的目标属性名。相反，它是与 include_directories() 命令相关的一个概念，该命令在较旧的 CMake 版本中用于设置全局包含目录列表（可以视为一种目录属性），而在现代 CMake 中，推荐使用 `target_include_directories()` 命令来为目标设置包含目录，这些目录是通过目标属性来管理的，但 CMake 并没有为这些目录定义一个单独的属性名来直接访问它们。
 
-## `INCLUDE_DIRECTORIES` property of directory( INCLUDE_DIRECTORIES 目录属性)
+## INCLUDE_DIRECTORIES property of directory( INCLUDE_DIRECTORIES 目录属性)
 
 This property specifies the list of directories given so far to the `include_directories()` command.
 
@@ -32,7 +32,7 @@ A directory gets its initial value **from its parent directory** if it has one.
 
 The initial value of the `INCLUDE_DIRECTORIES` target property comes from the value of this property. This property is used to populate the `INCLUDE_DIRECTORIES` target property, which is used by the generators to set the include directories for the compiler.
 
-## `INCLUDE_DIRECTORIES` property of target(INCLUDE_DIRECTORIES 目标属性)
+## INCLUDE_DIRECTORIES property of target(INCLUDE_DIRECTORIES 目标属性)
 
 List of preprocessor include file search directories.这个目标属性的值指示(给出)了编译器预处理器当前的头文件搜索目录的列表。
 
@@ -44,7 +44,7 @@ A target gets its initial value for this property from the value of the **INCLUD
 
 Both directory and target property values are adjusted by calls to the `include_directories()` command.
 
-## `include_directories()` 命令
+## include_directories() 命令
 
 Add include directories to the build.
 
@@ -66,6 +66,6 @@ If the SYSTEM option is given, the compiler will be told the directories are mea
 
 ## reference
 
-1. (https://cmake.org/cmake/help/latest/command/include_directories.html#command:include_directories)
-2. (https://cmake.org/cmake/help/latest/prop_tgt/INCLUDE_DIRECTORIES.html#prop_tgt:INCLUDE_DIRECTORIES)
-3. (https://cmake.org/cmake/help/latest/prop_dir/INCLUDE_DIRECTORIES.html#prop_dir:INCLUDE_DIRECTORIES)
+1. https://cmake.org/cmake/help/latest/command/include_directories.html#command:include_directories
+2. https://cmake.org/cmake/help/latest/prop_tgt/INCLUDE_DIRECTORIES.html#prop_tgt:INCLUDE_DIRECTORIES
+3. https://cmake.org/cmake/help/latest/prop_dir/INCLUDE_DIRECTORIES.html#prop_dir:INCLUDE_DIRECTORIES

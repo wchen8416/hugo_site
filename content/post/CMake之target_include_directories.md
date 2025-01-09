@@ -9,20 +9,6 @@ tags: ["CMake", "target_include_directories"]
 categories: ["Tech"]
 ---
 
-## target_link_libraries
-
-在 CMake 中，当您使用 target_link_libraries 命令来链接一个库（如 MathFunctions）时，**CMake 需要知道这个库是如何构建的，以及它的位置**。
-
-这里有几种可能的方式来找到和链接 MathFunctions 库：
-
-1. 如果在同一个 CMake 项目中：  
-   如果 MathFunctions 库是您当前 CMake 项目中的一部分，那么您应该在项目的某处有一个 add_library 命令来定义它。例如：
-   ```cmake
-   # 假设这是 MathFunctions 库的 CMakeLists.txt 文件或同一个文件中的一部分
-   add_library(MathFunctions STATIC mathfunctions.cxx)
-   ```
-   **在这种情况下，target_link_libraries(Tutorial PUBLIC MathFunctions) 会自动找到并链接这个库(不需要指定 MathFunctions 这个库文件的 path)，因为 MathFunctions 是一个在当前 CMake 项目中定义的目标。**
-
 ## target_include_directories
 
 ```cmake
@@ -61,16 +47,5 @@ The INTERFACE, PUBLIC and PRIVATE keywords are required to specify the scope of 
   当为目标 B 设置了一个接口属性（如包含目录、编译选项等）时，这些属性不会被目标 B 本身使用，但会被任何依赖于目标 B 的目标继承。
   这对于库目标特别有用，因为库通常希望其使用者能够访问某些头文件或链接到特定的库，但库本身在编译时可能不需要这些属性。
 
-## `INCLUDE_DIRECTORIES` property of target/directory
-
-List of preprocessor include file search directories.
-
-#### 目录的 INCLUDE_DIRECTORIES 属性
-
-#### 目标的 INCLUDE_DIRECTORIES 属性
-
-#### 区别和关联
-
-#### include_directories 命令
 
 ## Adding Usage Requirements for a Library
