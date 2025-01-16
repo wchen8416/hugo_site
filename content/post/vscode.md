@@ -9,7 +9,7 @@ tags: ["VSCode"]
 categories: ["Tech"]
 ---
 
-## workspace
+## vscode 之 workspace 概念
 
 A Visual Studio Code workspace is the collection of one or more folders that are opened in a VS Code window (instance). In most cases, you will have a single folder opened as the workspace. However, depending on your development workflow, you can include more than one folder, using an advanced configuration called Multi-root workspaces.
 
@@ -20,7 +20,7 @@ The concept of a workspace enables VS Code to:
 - Store and restore UI state associated with that workspace (for example, the files that are opened).
 - Selectively enable or disable extensions only for that workspace.
 
-### workspace 类型和它们对应的 settings
+#### workspace 类型和它们对应的 settings
 
 - {{<rawhtml>}}<strong>Single-folder workspaces：</strong>{{</rawhtml>}}  
   You don't have to do anything for a folder to become a VS Code workspace other than open the folder with VS Code.(当通过 "File > Open Folder" 打开某个目录就形成了一个 Single-folder workspaces) Once you open a folder, VS Code automatically keeps track of configuration, such as your open files or editor layout. When you reopen that folder in VS Code, the editor will be as you left it previously.
@@ -61,6 +61,19 @@ The concept of a workspace enables VS Code to:
   ![alt text](/img/image-22.png)  
   An untitled multi-root workspace opened in VS Code
 
-### References
+#### references
 
 1. [官方文档](https://code.visualstudio.com/docs/editor/workspaces)
+
+## Best Practices
+
+## issuse and solutions 常见问题
+
+#### 1. "Visual Studio Code is unable to watch for file changes in this large workspace" (error ENOSPC)
+
+workspace 中需要 vscode watch 的文件太多，超过了系统限制(用户可以打开的句柄数量上限限制)。
+
+```shell
+cat /proc/sys/fs/inotify/max_user_watches
+fs.inotify.max_user_watches=524288
+```

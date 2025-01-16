@@ -5,6 +5,6 @@ description: "记录一些阅读Kafka The Definitive Guide的知识点。"
 date: 2025-01-04T16:20:10Z
 author:      "Wayne"
 image: ""
-tags: ["Kafka"]
+tags: ["Kafka", "MQ"]
 categories: ["Tech"]
 ---
