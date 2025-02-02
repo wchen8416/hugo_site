@@ -1,5 +1,5 @@
 ---
-title: "heap VS stack"
+title: "Heap and Stack"
 subtitle: ""
 description: "介绍进程内存空间中堆内存和栈内存概念，以及它们在内存中的分配和释放的区别。"
 date: 2025-02-01T12:11:08Z
