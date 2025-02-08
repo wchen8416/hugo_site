@@ -1,6 +1,6 @@
 ---
 title:       "An Example Post"
-subtitle:    ""
+subtitle:    " "
 description: ""
 date:        {{ .Date }}
 author:      "Wayne"
