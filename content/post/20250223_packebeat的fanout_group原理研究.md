@@ -18,3 +18,4 @@ This is only available on Linux and requires using type: `af_packet`. Each proce
 
 1. https://man7.org/linux/man-pages/man7/packet.7.html
 2. https://www.kernel.org/doc/html/latest/networking/packet_mmap.html#packet-fanout
+3. https://csulrong.github.io/blogs/2022/03/10/linux-afpacket/
