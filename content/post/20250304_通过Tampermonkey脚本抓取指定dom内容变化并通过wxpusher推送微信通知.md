@@ -5,7 +5,7 @@ description: " "
 date: 2025-03-04T06:42:06Z
 author:      "Wayne"
 image: ""
-tags: ["Tampermonkey", "wxpusher", "微信事件通知"]
+tags: ["Tampermonkey", "wxpusher", "微信事件通知", "web", "dom监控"]
 categories: ["Tech"]
 ---
 

@@ -1,11 +1,11 @@
 ---
-title:       "Golang之Modules机制"
+title:       "Go之Modules机制"
 subtitle:    " "
 description: " "
 date:        2025-02-24T08:27:02Z
 author:      "Wayne"
 image:       ""
-tags:        ["Golang", "Modules", "dependency management"]
+tags:        ["Go", "Modules", "dependency management"]
 categories:  ["Tech" ]
 ---
 

@@ -1,11 +1,11 @@
 ---
-title: "Golang导入的包的初始化顺序"
+title: "Go导入的包的初始化顺序"
 subtitle: " "
 description: " "
 date: 2025-02-20T15:03:48Z
 author:      "Wayne"
 image: ""
-tags: ["Go基础", "Golang"]
+tags: ["Go"]
 categories: ["Tech"]
 ---
 

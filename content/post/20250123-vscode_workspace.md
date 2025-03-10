@@ -64,7 +64,7 @@ Unless you have already opened a .code-workspace file, the first time you add a 
 ![alt text](/img/image-22.png)  
  An untitled multi-root workspace opened in VS Code
 
-#### 个人理解
+#### 多子目录的单根工作区和多根工作区在 EXPLORER 看起来相同但其实是不同的工作区类型
 
 1. 注意多根工作区和单根工作区 EXPLORER 下列出的哪些目录的区别，尽管在 vscode 的文件浏览器(EXPLORER)中看起来是一样的,都有多个目录，但它们其实是不相同的概念。单根工作区的 EXPLORER 下的多个目录它们有共同的父目录(也就是通过“File > Open Folder” 打开的那个目录)；但多根工作区下面的多个目录它们是没有共同的父目录的，它们是通过打开一个 .code-workspace 文件来形成的，它们可能是位于不同的磁盘下的目录。
 
