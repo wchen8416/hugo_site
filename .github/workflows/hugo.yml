@@ -31,12 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.137.1
-    
+
     steps:
       - name: install hugo cli
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb        
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: install dart sass
         run: sudo snap install dart-sass
       - name: checkout
@@ -57,7 +57,7 @@ jobs:
         run: |
           hugo \
             --gc \
-            --minify          
+            --minify
       - name: upload artfacts
         uses: actions/upload-artifact@v4
         with:
@@ -76,11 +76,11 @@ jobs:
           path: public
 
       - name: sync hugo static public directory into remote AliyunECS by SSH
-        uses: easingthemes/ssh-deploy@v2.1.5      #可以访问的仓库，实现的上传服务器步骤被封装在此action
+        uses: easingthemes/ssh-deploy@v2.1.5 #可以访问的仓库，实现的上传服务器步骤被封装在此action
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }}  #这个是阿里云的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_SSH_PRIVATE_KEY }} #这个是阿里云的私钥
           ARGS: "-avzr --delete"
           SOURCE: "./public"
-          REMOTE_HOST: ${{ secrets.ALIYUN_ECS_HOST }}    #阿里云的 ip
-          REMOTE_USER: ${{ secrets.ALIYUN_ECS_USER }}    #阿里云用户
-          TARGET: "/opt/webapp/static/hugo"       #NGINX静态文件目录 
+          REMOTE_HOST: ${{ secrets.ALIYUN_ECS_HOST }} #阿里云的 ip
+          REMOTE_USER: ${{ secrets.ALIYUN_ECS_USER }} #阿里云用户
+          TARGET: "/opt/webapp/static/hugo" #NGINX静态文件目录
