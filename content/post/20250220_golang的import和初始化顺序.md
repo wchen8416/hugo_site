@@ -5,7 +5,7 @@ description: " "
 date: 2025-02-20T15:03:48Z
 author:      "Wayne"
 image: ""
-tags: ["Go"]
+tags: ["Go","dependency management"]
 categories: ["Tech"]
 ---
 

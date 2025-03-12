@@ -1,11 +1,11 @@
 ---
-title:       "Go之Modules机制"
+title:       "Go之Module机制"
 subtitle:    " "
 description: " "
 date:        2025-02-24T08:27:02Z
 author:      "Wayne"
 image:       ""
-tags:        ["Go", "Modules", "dependency management"]
+tags:        ["Go", "Module", "dependency management"]
 categories:  ["Tech" ]
 ---
 
