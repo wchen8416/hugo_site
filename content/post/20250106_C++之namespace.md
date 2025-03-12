@@ -1,16 +1,28 @@
 ---
-title: "C++ namespace"
-subtitle: ""
-description: "Namespaces provide a much more controlled mechanism for preventing name
-collisions. Namespaces partition the global namespace. A namespace is a scope. By
-defining a library’s names inside a namespace, library authors (and users) can avoid
-the limitations inherent in global names."
+title: "C++之namespace"
+subtitle: " "
+description: " "
 date: 2025-01-06T02:35:37Z
 author:      "Wayne"
-image: ""
-tags: ["C++", "namespace","global namespace", "namespace pollution", "global scope", "Unnamed Namespaces", "file static", "static", "scope", "Best Practices"]
+image: " "
+tags:
+  [
+    "C++",
+    "namespace",
+    "global namespace",
+    "namespace pollution",
+    "global scope",
+    "Unnamed Namespaces",
+    "file static",
+    "static",
+    "scope",
+    "Best Practices",
+  ]
 categories: ["Tech"]
 ---
+
+Namespaces provide a much more controlled mechanism for preventing name collisions. Namespaces partition the global namespace. A namespace is a scope. By
+defining a library’s names inside a namespace, library authors (and users) can avoid the limitations inherent in global names.
 
 ## Namespace pollution 命名空间污染问题
 
