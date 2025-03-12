@@ -59,7 +59,7 @@ jobs:
             --gc \
             --minify          
       - name: upload artfacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: public
           path: public/
@@ -70,7 +70,7 @@ jobs:
     needs: build
     steps:
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: public
           path: public
