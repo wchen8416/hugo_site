@@ -17,10 +17,11 @@ categories: ["Tech"]
 4. 全双工通信：WebSocket
 
 ![Alt text](/img/polling-technique.png)
+![alt text](/img/image-26.png)
 
 这个图片里面的 Short Polling 和 Long Polling 的 client side 都是在获取到 server 端发送的 response 之后就 Connection Closed 之后再发起下一次请求,所以它们是短连接短轮询和短连接长轮询。其实不用每一次断开连接也行，变成长连接的短(长)轮询。
 
-## 短轮询和长轮询(Regular(Short) Polling/Long polling)  
+## 短轮询和长轮询(Regular(Short) Polling/Long polling)
 
 ![Alt text](/img/long-short-polling.png)
 
