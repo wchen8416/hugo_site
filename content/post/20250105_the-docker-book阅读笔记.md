@@ -1,7 +1,7 @@
 ---
-title: "the-docker-book学习笔记"
+title: "《the-docker-book》"
 subtitle: ""
-description: "记录《The Docker Book》中的一些知识点。"
+description: " "
 date: 2025-01-05T09:48:17Z
 author:      "Wayne"
 image: ""
