@@ -1,0 +1,38 @@
+{
+    "log": {
+        "access": "/var/log/v2ray/access.log",
+        "error": "/var/log/v2ray/error.log",
+        "loglevel": "debug"
+    },
+    "inbounds": [
+        {
+            "port": 8001, //端口
+            "protocol": "vmess", //传输协议
+            "settings": {
+                "clients": [
+                    {
+                        "id": "707145c7-d671-4508-9418-37b19936c512", //这里GUID请通过工具生成
+                        "level": 1,
+                        "alterId": 64
+                    }
+                ]
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ]
+}
+
+Base URI path set successfully
+This is a fresh installation, generating random login info for security concerns:
+###############################################
+Username: 0UTUhAIx47
+Password: 9cLBXb3AeY
+Port: 61832
+WebBasePath: acQZfkNPxu7lSY0
+Access URL: http://47.250.49.227:61832/acQZfkNPxu7lSY0
+###############################################
